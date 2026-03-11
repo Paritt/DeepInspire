@@ -26,6 +26,16 @@ DeepInspire/
     └── performance.png         # Radar plot showing performance comparison between DeepInspire, human observers, and classification models
 ```
 
+## Environment Setup
+
+Before running any training scripts or notebooks, it is recommended to create a virtual environment and install dependencies:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 ## Training
 
 ### Classification Model
