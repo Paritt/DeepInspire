@@ -1,45 +1,36 @@
-# DeepInspire
+# DeepInspire 🩻
 
-This repository contains the code and models for the **DeepInspire** study, which focuses on automated assessment of inspiration quality in chest X-ray images using deep learning.
+This repository contains the code use in **DeepInspire** study, which focuses on automated assessment of inspiration quality in chest X-ray images using deep learning frameworks.
+
+The Dataset and Model can be accessed through this [links](https://drive.google.com/drive/folders/12fRIySjRqLX0YwEICfnESx56OoYk0zR6?usp=share_link)
+
 
 ## Overview
 
-DeepInspire consists of two main components:
-1. **Classification Model**: Determines whether a chest X-ray shows adequate (full) or inadequate (not full) inspiration
-2. **Segmentation Models**: Segments anatomical structures (lungs and ribs) from chest X-rays
+**DeepInspire** evaluate inspiration quality in chest X-ray images by calculate **Rib Over Lung (ROL)** value, which is percentage of posterior rib 9th area over lung area. The optimal ROL cutoff of 83.9% was use in our study to determine whether a chest X-ray shows adequate (full) or inadequate (not full) inspiration. The study show that DeepInspire can achieve higher performance in assessing inspiration quality compare to human interpretation and using classification models.
 
+![Figure 1. Performance of DeepInspire in assessing inspiration quality compared to human observers and classification models.](Image/performance.png)
+
+![Figure 2. Visualization of segmentation results for lung and rib segmentation models.](Image/show.png)
 ## Repository Structure
 
 ```
 DeepInspire/
-├── train_classification.py    # Training script for classification model
-├── train_segment.py           # Training script for segmentation models
-├── Dataset/                   # Training and testing data
-│   ├── train/                # Training images and masks
-│   ├── validation/           # Validation images and masks
-│   ├── test/                 # Test images and masks
-│   ├── NIH/                  # NIH chest X-ray dataset
-│   ├── human_segment/        # Human observer segmentations
-│   └── Focus image/          # Special case images
-├── Trained Model/            # Pre-trained model weights
-│   ├── Classification_resnet34_20260209_051509_best.pth
-│   ├── lung_MAnet_20260209_042722_best.pth
-│   └── rib_MAnet_20260209_034825_best.pth
-├── Notebook/                 # Jupyter notebooks for evaluation
-│   ├── evaluation.ipynb      # Model evaluation and testing
-│   └── visualization.ipynb   # Results visualization
-└── Result/                   # Experimental results
-    ├── model result/         # Model performance metrics
-    ├── human result/         # Human observer performance
-    ├── figure/              # Generated figures
-    └── Comparison_results/  # Detailed comparison results
+├── train_classification.py     # Training script for classification model
+├── train_segment.py            # Training script for segmentation models
+├── Notebook/                   # Jupyter notebooks for evaluation
+│   ├── evaluation.ipynb        # Notebook for model evaluation and testing
+│   └── visualization.ipynb     # Notebook for results visualization
+└── Image/                      # Experimental results
+    ├── show.png                # Example visualization of segmentation results for lung and rib segmentation models and using ROL cutoff to determine inspiration quality
+    └── performance.png         # Radar plot showing performance comparison between DeepInspire, human observers, and classification models
 ```
 
 ## Training
 
 ### Classification Model
 
-Train the classification model to distinguish between adequate and inadequate inspiration:
+The classification model can be trained using the following command:
 
 ```bash
 python train_classification.py
@@ -54,7 +45,7 @@ python train_classification.py
 
 ### Segmentation Models
 
-Train segmentation models for lung and rib segmentation:
+The segmentation models can be trained using the following commands:
 
 ```bash
 # Train rib segmentation model
@@ -83,31 +74,6 @@ To run the notebooks:
 ```bash
 jupyter notebook Notebook/evaluation.ipynb
 ```
-
-## Dataset
-
-The `Dataset/` folder contains:
-- **train/**: Training images with full/not full inspiration labels
-- **validation/**: Validation images for model tuning
-- **test/**: Test images for final evaluation
-- **NIH/**: Images from NIH chest X-ray dataset with various pathologies
-- **human_segment/**: Manual segmentations from human observers
-- **Focus image/**: Special case images including artifacts, pathologies, and challenging cases
-
-## Results
-
-All experimental results are stored in the `Result/` folder:
-- **model result/**: Model performance metrics (CSV format)
-- **human result/**: Human observer performance comparison
-- **Comparison_results/**: Detailed results across different test scenarios
-- **training_logs/**: Training history and logs
-
-## Pre-trained Models
-
-Pre-trained model weights are available in the `Trained Model/` folder:
-- `Classification_resnet34_20260209_051509_best.pth`: ResNet34-based classification model
-- `lung_MAnet_20260209_042722_best.pth`: MA-Net model for lung segmentation
-- `rib_MAnet_20260209_034825_best.pth`: MA-Net model for rib segmentation
 
 ## Requirements
 
