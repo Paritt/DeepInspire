@@ -105,3 +105,5 @@ If you use this code or models in your research, please cite the DeepInspire stu
 ## License
 
 This repository is provided for research purposes. Please contact the authors for licensing information.
+
+Mail: [paritt.w@gmail.com](mailto:paritt.w@gmail.com)
